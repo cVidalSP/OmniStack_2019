@@ -8,5 +8,6 @@ mongoose.connect('mongodb+srv://semana:semana@cluster0-cfebw.mongodb.net/test?re
 });
 
 app.use(require('./routes')); // importacao das rotas
+
 app.listen(3333);
 
