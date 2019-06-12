@@ -1,7 +1,9 @@
 const express = require('express');
 const multer = require('multer');
 const uploadConfig = require('./config/upload');
+
 const PostController = require('./controllers/PostController');
+const LikeController = require('./controllers/LikeController');
 
 const routes = new express.Router();
 const upload = multer(uploadConfig);
@@ -11,8 +13,11 @@ const upload = multer(uploadConfig);
 //     return res.send(`Hello ${req.query.name}`);// res Retorna uma resposta da requisicao
 // } )                                            // req representa a requisicao ex: localhost:3333/?name=Caina
 
-
+// Posts
 routes.get('/posts', PostController.index);
 routes.post('/posts', upload.single('image'), PostController.store);   
+
+// Likes
+routes.post('/posts/:id/like', LikeController.store);
 
 module.exports = routes;
