@@ -10,7 +10,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server) // Nosso server aceita protocolos http e protocolos via websocket (tempo real)
 
 //Conexao com o banco
-mongoose.connect('mongodb+srv://semana:semana@cluster0-cfebw.mongodb.net/test?retryWrites=true&w=majority',{
+mongoose.connect('mongodb+srv://usuario:senha@cluster0-cfebw.mongodb.net/test?retryWrites=true&w=majority',{
     useNewUrlParser: true, 
 });
 
