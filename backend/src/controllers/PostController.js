@@ -5,12 +5,23 @@ const Post = require('../models/Post');
 module.exports = {
     // Listar todos os posts
     async index(req, res){
+        const posts = await Post.find(/* Filtros da pesquisa */).sort('-createdAt');// Sinal - representa como se fosse o Desc
 
+        res.json(posts);
     },
     // Salvar post
     async store(req, res){ 
-        console.log(req.file);
+        const { author, place, description, hashtags } = req.body;
+        const { filename: image } = req.file;
 
-        return res.json({ok : true})
+        const post = await Post.create({
+            author,
+            place,
+            description,
+            hashtags,
+            image,
+        })
+
+        return res.json(post)
     },
 }

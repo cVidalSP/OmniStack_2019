@@ -11,8 +11,8 @@ const PostSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     }
-},{
-    timeStamps: true, // Data da criacao, horario e etc
-})
+}, {
+    timestamps: true, // Data da criacao, horario e etc
+});
 
 module.exports = mongoose.model('Post', PostSchema);

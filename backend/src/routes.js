@@ -12,6 +12,7 @@ const upload = multer(uploadConfig);
 // } )                                            // req representa a requisicao ex: localhost:3333/?name=Caina
 
 
-routes.post('/posts', upload.single('image'), PostController.store) ;  
+routes.get('/posts', PostController.index);
+routes.post('/posts', upload.single('image'), PostController.store);   
 
 module.exports = routes;
