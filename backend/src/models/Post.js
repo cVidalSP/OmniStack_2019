@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// Criacao do modelo de post que sera armazenado no monbodb
+// Criacao do modelo de post que sera armazenado no mongodb
 const PostSchema = new mongoose.Schema({
     author : String,
     place: String,

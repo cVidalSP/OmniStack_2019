@@ -15,6 +15,10 @@ module.exports = {
 
         await post.save();
 
+        req.io.emit('like', post); // Mesma coisa do postController. Todos os usuarios
+                                  // que estao conectados, receberam a atualizacao com essa nova
+                                // informacao pelo socket.io
+
         return res.json(post);
     },
 }

@@ -1,4 +1,6 @@
 const express = require('express');
+
+// Configuracao do multer, para upload de posts. Permite que o express entenda o corpo multipartformdata
 const multer = require('multer');
 const uploadConfig = require('./config/upload');
 

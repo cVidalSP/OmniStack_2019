@@ -1,4 +1,6 @@
 const Post = require('../models/Post');
+
+// Biblioteca para redimensionamento de imagem
 const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs');
@@ -17,14 +19,17 @@ module.exports = {
         const { author, place, description, hashtags } = req.body;
         const { filename: image } = req.file;
 
+        const [ name ] = image.split('.');
+        const fileName = `${name}.jpg`;
+
         // Redimensionamento da imagem e colocando na pasta resized
         await sharp(req.file.path)
             .resize(500)
             .jpeg({ quality: 70 })
             .toFile(
-                path.resolve(req.file.destination, 'resized', image )
+                path.resolve(req.file.destination, 'resized', fileName )
             )
-            fs.unlinkSync(req.file.path); // Apaga a imagem de fora da pasta resized
+            fs.unlinkSync(req.file.path); // Apaga a imagem de fora da pasta resized (imagem original)
             // Ou seja, apenas armazenar a imagem redimensionada no back end
 
         const post = await Post.create({
@@ -32,8 +37,10 @@ module.exports = {
             place,
             description,
             hashtags,
-            image,
+            image: fileName,
         })
+
+        req.io.emit('post', post);// Envia os novos dados para `geral` que esta conectado
 
         return res.json(post)
     },
