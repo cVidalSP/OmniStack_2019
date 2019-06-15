@@ -23,35 +23,35 @@ class Feed extends Component{
         return(
             <section id="post-list">
                 { this.state.feed.map(post => (
-                    <article>
-                    <header>
-                        <div className="user-info">
-                            <span>{post.author}</span>
-                            <span className="place">{post.place}</span>
-                        </div>
+                    <article key={post._id}>
+                        <header>
+                            <div className="user-info">
+                                <span>{post.author}</span>
+                                <span className="place">{post.place}</span>
+                            </div>
 
-                        <img src={more} alt="mais" />
-                    </header>
+                            <img src={more} alt="mais" />
+                        </header>
 
-                    <img src={`http://localhost:3333/files/${post.image}`} alt=""/>
+                        <img src={`http://localhost:3333/files/${post.image}`} alt=""/>
 
-                    <footer>
-                        <div className="actions">
-                            <img src={like} alt=""/>
-                            <img src={comment} alt=""/>
-                            <img src={send} alt=""/>
+                        <footer>
+                            <div className="actions">
+                                <img src={like} alt=""/>
+                                <img src={comment} alt=""/>
+                                <img src={send} alt=""/>
 
-                        </div>
+                            </div>
 
-                        <strong> {post.likes} </strong>
+                            <strong> {post.likes} </strong>
 
-                        <p>{post.description}
-                            <span>{post.hashtags}</span>
-                        </p>
-                    </footer>
+                            <p>{post.description}
+                                <span>{post.hashtags}</span>
+                            </p>
+                        </footer>
 
-                </article>
-                ) ) }
+                    </article>
+                )) }
             </section>
         );
     }
